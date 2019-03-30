@@ -1,0 +1,44 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class BFS {
+	
+	BFS(int Graph[][],int node)
+	{
+		Queue<Integer> Visited = new LinkedList<Integer>();			
+		Visited.add(node);
+		int vnode;
+		while(!(Visited.isEmpty()))
+		{	
+			vnode = Visited.poll();
+			System.out.println(vnode);
+	
+			for(int i=0;i<Graph.length;i++)
+			{				
+				if(Graph[vnode][i] == 1 && !(Visited.contains(i) ))
+				{
+					Visited.add(i);
+				}
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		int Graph[][];
+		Graph = new int [4][4];
+		
+		Scanner sc = new Scanner(System.in);
+		for(int i=0;i<4;i++)
+		{
+			System.out.println("Node :-"+(i));
+			for(int j=0;j<4;j++)
+			{
+				System.out.println("Destination :- "+(j));
+				Graph[i][j] = sc.nextInt();
+			}
+		}
+		System.out.println(Graph.length);
+		new BFS(Graph, 0);
+	}
+}
